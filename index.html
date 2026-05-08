@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming English | A1-B1 Job Prep</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Programming<span>English</span></div>
+                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: flex-end;">
+                    <div style="display: flex; gap: 5px;">
+                        <a href="#" class="btn" style="padding: 6px 12px; font-size: 0.8rem; background: var(--accent-gold); color: var(--accent-dark);">Home</a>
+                        <a href="listening.html" class="btn" style="padding: 6px 12px; font-size: 0.8rem;">Listening</a>
+                        <a href="reading.html" class="btn" style="padding: 6px 12px; font-size: 0.8rem;">Reading</a>
+                        <a href="grammar.html" class="btn" style="padding: 6px 12px; font-size: 0.8rem;">Grammar</a>
+                        <a href="collocations.html" class="btn" style="padding: 6px 12px; font-size: 0.8rem;">Collocations</a>
+                    </div>
+                    <span style="width: 1px; height: 24px; background: rgba(255,255,255,0.3); margin: 0 5px;"></span>
+                    <div style="display: flex; gap: 5px;">
+                        <button class="btn" onclick="navigateUnit(-1)" style="padding: 6px 12px; font-size: 0.8rem;">◀️</button>
+                        <button class="btn" onclick="navigateUnit(1)" style="padding: 6px 12px; font-size: 0.8rem;">▶️</button>
+                        <button id="pause-audio-btn" class="btn" onclick="togglePauseAudio()" style="padding: 6px 12px; font-size: 0.8rem;">⏸️</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container admin-controls">
+        <!-- Attendance Control -->
+        <details class="unit-block" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); margin-bottom: 20px;">
+            <summary class="unit-header" style="padding: 15px 25px;">📅 Attendance & Progress Control</summary>
+            <div class="unit-body">
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; margin-top: 10px;">
+                    <button class="btn" style="padding: 10px 0;" onclick="toggleAttendance(this)">U1</button>
+                    <button class="btn" style="padding: 10px 0;" onclick="toggleAttendance(this)">U2</button>
+                    <button class="btn" style="padding: 10px 0;" onclick="toggleAttendance(this)">U3</button>
+                    <button class="btn" style="padding: 10px 0;" onclick="toggleAttendance(this)">U4</button>
+                    <button class="btn" style="padding: 10px 0;" onclick="toggleAttendance(this)">U5</button>
+                    <button class="btn" style="padding: 10px 0;" onclick="toggleAttendance(this)">U6</button>
+                    <button class="btn" style="padding: 10px 0;" onclick="toggleAttendance(this)">U7</button>
+                    <button class="btn" style="padding: 10px 0;" onclick="toggleAttendance(this)">U8</button>
+                    <button class="btn" style="padding: 10px 0;" onclick="toggleAttendance(this)">U9</button>
+                    <button class="btn" style="padding: 10px 0;" onclick="toggleAttendance(this)">U10</button>
+                </div>
+                <button class="btn" onclick="sendAttendanceToWhatsApp()" style="width: 100%; margin-top: 20px; background: #25D366; border-color: #25D366; color: #fff; justify-content: center;">Send Attendance 📱</button>
+            </div>
+        </details>
+
+        <!-- Dashboard / Diagnostic Test -->
+        <div id="diagnostic-hub" class="diagnostic-container">
+            <h2 style="margin-bottom: 10px;">🚀 Welcome to your Career Upgrade</h2>
+            <p style="margin-bottom: 25px; opacity: 0.8;">Before we start your journey to a B1 level in English for Programming, let's find your current level.</p>
+            <button class="btn" onclick="startDiagnostic()" style="background: var(--accent-gold); color: var(--accent-dark); border-color: var(--accent-gold);">
+                Start Diagnostic Test 📝
+            </button>
+        </div>
+
+        <div id="diagnostic-test" style="display: none;" class="diagnostic-container">
+            <div id="diagnostic-questions">
+                <!-- Injected via script.js -->
+            </div>
+            <button class="btn" onclick="submitDiagnostic()" style="margin-top: 20px; width: 100%; justify-content: center;">
+                Submit Results
+            </button>
+        </div>
+
+        <div id="diagnostic-result" class="result-card" style="display: none;">
+            <h3 id="result-level-text">Your Level: ---</h3>
+            <p id="result-description" style="margin-top: 10px; opacity: 0.8;"></p>
+            <button class="btn" onclick="closeDiagnostic()" style="margin-top: 20px; background: var(--accent-dark); border-color: var(--accent-dark);">
+                Start Course Content 🚀
+            </button>
+        </div>
+    </div>
+
+    <div class="container" id="main-content" style="display: none;">
+        <div class="unit-list" id="curriculum-container">
+            <!-- Content Injected via script.js -->
+        </div>
+    </div>
+
+    <!-- About the Author Section -->
+    <div class="container" id="author-section" style="margin-top: 30px;">
+        <details class="unit-block" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+            <summary class="unit-header">👩‍🏫 About the Author</summary>
+            <div class="unit-body">
+                <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 12px;">
+                    <div style="width: 80px; height: 80px; background: var(--gradient-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700; color: var(--accent-dark);">CC</div>
+                    <div>
+                        <h3>Cecilia Chiappero</h3>
+                        <p style="color: var(--accent-gold);">English Language Educator & Researcher</p>
+                    </div>
+                </div>
+                <p>Cecilia Chiappero is an English language educator and researcher affiliated with the Universidad Nacional de Córdoba, Argentina. Her work focuses on innovative teaching methodologies and technology-enhanced language learning.</p>
+            </div>
+        </details>
+    </div>
+
+    <!-- References Section -->
+    <div class="container" id="references-section">
+        <details class="unit-block" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+            <summary class="unit-header">📚 References (APA Style)</summary>
+            <div class="unit-body">
+                <p><strong>Course Author:</strong> Chiappero, C. (2026). <em>Programming & Job Interviews English Course</em>. Original educational material.</p>
+                <h4 style="margin-top: 20px; color: var(--accent-gold);">Framework & Language References</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Council of Europe. (2020). <em>Common European Framework of Reference for Languages (CEFR)</em>.</li>
+                    <li>Swan, M. (2016). <em>Practical English usage</em>. Oxford University Press.</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Programming English Course. Optimized for Professional Growth.</p>
+        </div>
+    </footer>
+
+    <script src="js/data_part1.js"></script>
+    <script src="js/data_part2.js"></script>
+    <script src="js/data_part3.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
